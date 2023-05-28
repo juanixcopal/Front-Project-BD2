@@ -8,9 +8,14 @@ export const useFetchInitLogin = () => {
   const [data, setData] = useState(defaultData)
   const [message, setMessage] = useState(defaultMessage)
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleInputChange = event => {
     setData({ ...data, [event.target.name]: event.target.value })
+  }
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(prevShowPassword => !prevShowPassword)
   }
 
   const login = async e => {
@@ -63,5 +68,5 @@ export const useFetchInitLogin = () => {
     setLoading(false)
   }
 
-  return { data, handleInputChange, login, message, loading }
+  return { data, handleInputChange, login, message, loading, showPassword, handleTogglePasswordVisibility }
 }

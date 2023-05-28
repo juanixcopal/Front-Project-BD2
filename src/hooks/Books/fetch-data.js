@@ -47,6 +47,7 @@ export const useFetchAllBooksByTitleAuthor = ({ dataModal }) => {
     if (dataModal.params?.titulo && dataModal.params?.autor) {
       _getAllBooksByTitleAuthor()
     }
+    // eslint-disable-next-line
   }, [dataModal.params])
   return { allBooksByTitle, loadingAllBooks, _getAllBooksByTitleAuthor }
 }

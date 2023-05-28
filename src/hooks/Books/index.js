@@ -7,6 +7,7 @@ export const useFetchInitBooks = () => {
   const [data, setData] = useState(defaultData)
   const [dataModal, setDataModal] = useState(defaultDataModal)
   const [dataSubModal, setDataSubModal] = useState(defaultDataSubModal)
+  const [formValues, setFormValues] = useState({})
 
   const toggle = (_, title, component, params) => {
     setDataModal({
@@ -38,9 +39,13 @@ export const useFetchInitBooks = () => {
     setData({ ...data, [event.target.name]: value })
   }
 
+  const handleChange = e => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value })
+  }
+
   const FetchTableBooks = useFetchTableBooks()
   const FetchAllBooksByTitleAuthor = useFetchAllBooksByTitleAuthor({ dataModal })
-  const Actions = useActions({ data, toggle, FetchTableBooks, subToggle, dataSubModal, FetchAllBooksByTitleAuthor })
+  const Actions = useActions({ data, toggle, FetchTableBooks, subToggle, dataSubModal, FetchAllBooksByTitleAuthor, formValues })
 
   return {
     FetchTableBooks,
@@ -51,6 +56,7 @@ export const useFetchInitBooks = () => {
     Actions,
     FetchAllBooksByTitleAuthor,
     subToggle,
-    dataSubModal
+    dataSubModal,
+    handleChange
   }
 }

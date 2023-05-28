@@ -1,16 +1,16 @@
 import Header from '../../components/Header/Header'
 import { Container, Row } from 'reactstrap'
+import { useFetchInitUsers } from '../../hooks/Users/index'
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, styled, tableCellClasses, Button, IconButton } from '@mui/material'
-import { useFetchInitBooks } from '../../hooks/Books/index'
-import AddBusinessIcon from '@mui/icons-material/AddBusiness'
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1'
+import ModeEditIcon from '@mui/icons-material/ModeEdit'
+import DeleteIcon from '@mui/icons-material/Delete'
+import MainModal from './modal-component/index'
 
-import MainModal from './modal-component/index.js'
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
-
-const Books = () => {
-  const mainHook = useFetchInitBooks()
-  const { FetchTableBooks, toggle } = mainHook
-  const { loadingTableBooks, tableBooks } = FetchTableBooks
+const User = () => {
+  const mainHook = useFetchInitUsers()
+  const { FetchActiveUsers, toggle } = mainHook
+  const { activeUsers } = FetchActiveUsers
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -26,6 +26,7 @@ const Books = () => {
     '&:nth-of-type(odd)': {
       backgroundColor: '#e3f2fd'
     },
+    // hide last border
     '&:last-child td, &:last-child th': {
       border: 0
     }
@@ -35,42 +36,43 @@ const Books = () => {
     <>
       <Header />
       <MainModal useFetchInit={mainHook} />
+
       <Container className='mt--8' fluid>
         <Row>
           <div className='col-xl-12 col-md-12 col-sm-12' style={{ paddingBottom: '40px' }}>
-            <Button disabled={false} variant='contained' color='inherit' onClick={() => toggle(null, 'Crear Libro', 'create-book')}>
-              <AddBusinessIcon />
-              Añadir Libro
+            <Button disabled={false} variant='contained' color='inherit' onClick={() => toggle(null, 'Crear Usuario', 'create-user')}>
+              <PersonAddAlt1Icon />
+              Crear Usuario
             </Button>
           </div>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label='simple table'>
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>Titulo</StyledTableCell>
-                  <StyledTableCell align='right'>Autor</StyledTableCell>
-                  <StyledTableCell align='right'>Genero</StyledTableCell>
-                  <StyledTableCell align='right'>Cantidad Stock</StyledTableCell>
-                  <StyledTableCell align='right'>Precio Unitario</StyledTableCell>
+                  <StyledTableCell>Nombre</StyledTableCell>
+                  <StyledTableCell align='right'>Apellido</StyledTableCell>
+                  <StyledTableCell align='right'>UserName</StyledTableCell>
                   <StyledTableCell align='right'>Acciones</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {tableBooks.map((item, index) => {
-                  const { autor, cantidadLibros, genero, precio, titulo } = item
+                {activeUsers.map(item => {
+                  const { id_user, nombre, apellido, username } = item
 
                   return (
-                    <StyledTableRow key={index}>
+                    <StyledTableRow key={id_user}>
                       <StyledTableCell component='th' scope='row'>
-                        {titulo}
+                        {nombre}
                       </StyledTableCell>
-                      <StyledTableCell align='right'>{autor}</StyledTableCell>
-                      <StyledTableCell align='right'>{genero}</StyledTableCell>
-                      <StyledTableCell align='right'>{cantidadLibros}</StyledTableCell>
-                      <StyledTableCell align='right'>{precio} €</StyledTableCell>
+                      <StyledTableCell align='right'>{apellido}</StyledTableCell>
+                      <StyledTableCell align='right'>{username}</StyledTableCell>
                       <StyledTableCell align='right'>
-                        <IconButton color='primary' disabled={loadingTableBooks} onClick={() => toggle(null, 'Todos los libros', 'view-all-book', item)}>
-                          <RemoveRedEyeIcon />
+                        <IconButton color='primary' onClick={() => toggle(null, 'Editar Usuario', 'update-user', item)}>
+                          <ModeEditIcon />
+                        </IconButton>
+
+                        <IconButton color='error' onClick={() => toggle(null, 'Eliminar Usuario', 'delete-user', item)}>
+                          <DeleteIcon />
                         </IconButton>
                       </StyledTableCell>
                     </StyledTableRow>
@@ -85,4 +87,4 @@ const Books = () => {
   )
 }
 
-export default Books
+export default User

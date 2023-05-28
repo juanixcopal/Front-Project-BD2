@@ -11,7 +11,7 @@ const Neo4SixNavbar = props => {
   }
 
   //Da error cuando se cierra sesión
-  const FirstLetter = name.charAt(0).toUpperCase()
+  // const FirstLetter = name.charAt(0).toUpperCase()
 
   return (
     <>
@@ -23,7 +23,7 @@ const Neo4SixNavbar = props => {
               <DropdownToggle className='pr-0' nav>
                 <Media className='align-items-center'>
                   <span className='avatar avatar-sm rounded-circle'>
-                    <Avatar>{FirstLetter}</Avatar>
+                    <Avatar />
                   </span>
                   <Media className='ml-2 d-lg-block'>
                     <span className='mb-0 text-sm font-weight-bold'>{name || 'User'}</span>

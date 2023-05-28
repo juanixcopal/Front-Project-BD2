@@ -3,7 +3,7 @@ import { Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 
-const DeleteBook = ({ useFetchInit }) => {
+const DeleteUser = ({ useFetchInit }) => {
   const StyledErrorOutlineIcon = styled(ErrorOutlineIcon)(({ theme }) => ({
     fontSize: 90,
     color: theme.palette.warning.main,
@@ -15,17 +15,17 @@ const DeleteBook = ({ useFetchInit }) => {
     textAlign: 'center'
   }))
 
-  const { subToggle, Actions } = useFetchInit
+  const { toggle, Actions } = useFetchInit
 
-  const { deleteBook } = Actions
+  const { deleteUser } = Actions
 
   return (
     <>
-      <form onSubmit={deleteBook}>
+      <form onSubmit={deleteUser}>
         <ModalBody>
           <StyledErrorOutlineIcon />
           <StyledTypography variant='h6' gutterBottom>
-            ¿Deseas eliminar este libro?
+            ¿Deseas eliminar este Usuario?
           </StyledTypography>
         </ModalBody>
         <ModalFooter>
@@ -33,7 +33,7 @@ const DeleteBook = ({ useFetchInit }) => {
             <Button disabled={false} color='success' type='submit' style={{ float: 'right' }}>
               Eliminar
             </Button>
-            <Button disabled={false} color='danger' type='button' onClick={subToggle}>
+            <Button disabled={false} color='danger' type='button' onClick={toggle}>
               Cancelar
             </Button>
           </div>
@@ -43,4 +43,4 @@ const DeleteBook = ({ useFetchInit }) => {
   )
 }
 
-export default DeleteBook
+export default DeleteUser

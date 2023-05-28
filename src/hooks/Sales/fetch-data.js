@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAllBooks } from '../../data/Sales/get.js'
+import { getAllBooks, getUserMoreSales } from '../../data/Sales/get.js'
 
 export const useFetchAllBooks = () => {
   const [allBooks, setAllBooks] = useState([])
@@ -16,7 +16,7 @@ export const useFetchAllBooks = () => {
           localStorage.clear()
           window.location.reload()
         }
-        console.log('Error fetch-data armarios', response)
+        console.log('Error fetch-data all books', response)
       })
     setLoadingAllBooks(false)
   }
@@ -26,4 +26,31 @@ export const useFetchAllBooks = () => {
   }, [])
 
   return { allBooks, loadingAllBooks, _getAllBooks }
+}
+
+export const useFetchUserMoreSales = () => {
+  const [userMoreSales, setUserMoreSales] = useState([])
+  const [loadingUserMoreSales, setLoadingUserMoreSales] = useState(false)
+
+  const _getUserMoreSales = async () => {
+    setLoadingUserMoreSales(true)
+    await getUserMoreSales()
+      .then(({ data }) => {
+        setUserMoreSales(data[0])
+      })
+      .catch(({ response }) => {
+        if (response.status === 401) {
+          localStorage.clear()
+          window.location.reload()
+        }
+        console.log('Error fetch-data user more sales', response)
+      })
+    setLoadingUserMoreSales(false)
+  }
+
+  useEffect(() => {
+    _getUserMoreSales()
+  }, [])
+
+  return { userMoreSales, loadingUserMoreSales, _getUserMoreSales }
 }

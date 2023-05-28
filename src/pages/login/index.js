@@ -1,10 +1,13 @@
-import { Button, Container, Card, CardContent, Box, Typography, TextField } from '@mui/material'
+import { Button, Container, Card, CardContent, Box, Typography, TextField, IconButton, InputAdornment } from '@mui/material'
 import Logo from '../../images/neo4sixLogo.png'
 import { useFetchInitLogin } from '../../hooks/Login/index'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+
 const Login = () => {
   const FetchInitLogin = useFetchInitLogin()
 
-  const { handleInputChange, login, message, loading } = FetchInitLogin
+  const { handleInputChange, login, message, loading, handleTogglePasswordVisibility, showPassword } = FetchInitLogin
 
   const { message: _message, result } = message
 
@@ -45,10 +48,17 @@ const Login = () => {
                   fullWidth
                   name='password'
                   label='Contraseña'
-                  type='password'
+                  type={showPassword ? 'text' : 'password'}
                   // id='password'
                   autoComplete='current-password'
                   onChange={handleInputChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position='end'>
+                        <IconButton onClick={handleTogglePasswordVisibility}>{showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}</IconButton>
+                      </InputAdornment>
+                    )
+                  }}
                 />
                 {loading ? (
                   <span className='text-success'>Ingresando.........</span>

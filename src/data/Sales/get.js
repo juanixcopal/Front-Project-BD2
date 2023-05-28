@@ -10,3 +10,14 @@ export const getAllBooks = async () => {
       throw error
     })
 }
+
+export const getUserMoreSales = async () => {
+  return await axios
+    .get(`${process.env.REACT_APP_API_BASE}/v1/sales/query`, { headers: { service: 'user-more-sales', token: localStorage.getItem('token') } })
+    .then(response => {
+      return response
+    })
+    .catch(error => {
+      throw error
+    })
+}

@@ -19,7 +19,7 @@ import {
 } from 'reactstrap'
 
 const Sidebar = props => {
-  const fullName = localStorage.getItem('username')
+  const fullName = localStorage.getItem('name')
 
   const logout = () => {
     localStorage.clear()
