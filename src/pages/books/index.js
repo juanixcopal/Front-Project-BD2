@@ -35,7 +35,7 @@ const Books = () => {
     <>
       <Header />
       <MainModal useFetchInit={mainHook} />
-      <Container className='mt--8' fluid>
+      <Container className='mt--8' fluid style={{ paddingBottom: '40px' }}>
         <Row>
           <div className='col-xl-12 col-md-12 col-sm-12' style={{ paddingBottom: '40px' }}>
             <Button disabled={false} variant='contained' color='inherit' onClick={() => toggle(null, 'Crear Libro', 'create-book')}>

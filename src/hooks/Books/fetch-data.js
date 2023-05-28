@@ -16,7 +16,7 @@ export const useFetchTableBooks = () => {
           localStorage.clear()
           window.location.reload()
         }
-        console.log('Error fetch-data armarios', response)
+        console.log('Error fetch-data table books', response)
       })
     setLoadingTableBooks(false)
   }

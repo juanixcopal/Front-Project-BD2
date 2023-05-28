@@ -50,7 +50,7 @@ const Sales = () => {
     <form onSubmit={createSale}>
       <Header />
       <MainModal useFetchInit={mainHook} />
-      <Container className='mt--9' fluid>
+      <Container className='mt--9' fluid style={{ paddingBottom: '40px' }}>
         <div>
           <p style={{ color: 'white' }}>
             Persona con más ventas: {nombre} {apellido}

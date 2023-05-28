@@ -19,11 +19,10 @@ const App = () => {
     <BrowserRouter>
       <ToastContainer />
       <Switch>
-        <Route exact path='/login' component={Login} />
+        <Route exact path={`/`} component={Login} />
         {token ? (
           <>
             <Route exact path={`/`} />
-            {/* <Route exact path='/books' component={Books} /> */}
             <Route path='/neo4six' render={props => <Layout {...props} />} />
           </>
         ) : (

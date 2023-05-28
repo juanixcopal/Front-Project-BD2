@@ -1,6 +1,7 @@
 import Books from './pages/books/index.js'
 import Sales from './pages/sales/index.js'
 import User from './pages/user/index.js'
+import PreviousSales from './pages/previous sales/index.js'
 
 var routes = [
   {
@@ -22,6 +23,13 @@ var routes = [
     name: 'Users',
     icon: 'bi bi-people text-info',
     component: User,
+    layout: '/neo4six'
+  },
+  {
+    path: '/previousSales',
+    name: 'Previous Sales',
+    icon: 'bi bi-check2-circle text-warning',
+    component: PreviousSales,
     layout: '/neo4six'
   }
 
